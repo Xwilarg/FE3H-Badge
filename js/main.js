@@ -45,16 +45,21 @@ let allCharacters = new Map([
 
 function process() {
     let ctx = document.getElementById('canvas').getContext('2d');
-    let i = 0;
-    allCharacters.forEach(function(e) {
-        if (document.getElementById(e.name).checked) {
-            loadImage(ctx, "img/" + e.name + ".png", (i % 8) * 130, Math.floor(i / 8) * 130);
-            loadImage(ctx, "img/Mask.png", (i % 8) * 130, Math.floor(i / 8) * 130);
-        } else {
-            loadImage(ctx, "img/Empty.png", (i % 8) * 130, Math.floor(i / 8) * 130);
-        }
-        i++;
-    });
+    let img = new Image();
+    img.onload = function() {
+        ctx.drawImage(img, 0, 0, 1040, 650);
+        let i = 0;
+        allCharacters.forEach(function(e) {
+            if (document.getElementById(e.name).checked) {
+                loadImage(ctx, "img/" + e.name + ".png", (i % 8) * 130, Math.floor(i / 8) * 130);
+                loadImage(ctx, "img/Mask.png", (i % 8) * 130, Math.floor(i / 8) * 130);
+            } else {
+                loadImage(ctx, "img/Empty.png", (i % 8) * 130, Math.floor(i / 8) * 130);
+            }
+            i++;
+        });
+    }
+    img.src = "img/Map.png";
 }
 
 function loadImage(ctx, path, x, y) {
