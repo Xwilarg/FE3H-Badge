@@ -10,5 +10,15 @@ let allCharacters = new Map([
 ])
 
 function process() {
-    
+    let ctx = document.getElementById('canvas').getContext('2d');
+    loadImage(ctx, "img/Bernadetta.png", 0, 0);
+    loadImage(ctx, "img/Mask.png", 0, 0);
+}
+
+function loadImage(ctx, path, x, y) {
+    let img = new Image();
+    img.onload = function() {
+        ctx.drawImage(img, x, y);
+    }
+    img.src = path;
 }
