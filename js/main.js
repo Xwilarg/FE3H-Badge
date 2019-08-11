@@ -47,14 +47,13 @@ function process() {
     let ctx = document.getElementById('canvas').getContext('2d');
     let img = new Image();
     img.onload = function() {
-        ctx.drawImage(img, 0, 0, 1040, 650);
+        ctx.drawImage(img, 0, 0, 520, 487.5);
         let i = 0;
         allCharacters.forEach(function(e) {
             if (document.getElementById(e.name).checked) {
-                loadImage(ctx, "img/" + e.name + ".png", (i % 8) * 130, Math.floor(i / 8) * 130);
-                loadImage(ctx, "img/Mask.png", (i % 8) * 130, Math.floor(i / 8) * 130);
+                loadImage(ctx, "img/" + e.name + ".png", (i % 8) * 65, Math.floor(i / 8) * 97.5 + 5);
             } else {
-                loadImage(ctx, "img/Empty.png", (i % 8) * 130, Math.floor(i / 8) * 130);
+                loadImage(ctx, "img/Empty.png", (i % 8) * 65, Math.floor(i / 8) * 97.5 + (i % 2 == 1 ? 16.25 : 0) + 8.5);
             }
             i++;
         });
@@ -65,7 +64,7 @@ function process() {
 function loadImage(ctx, path, x, y) {
     let img = new Image();
     img.onload = function() {
-        ctx.drawImage(img, x, y);
+        ctx.drawImage(img, x, y, 62.5, 62.5);
     }
     img.src = path;
 }
